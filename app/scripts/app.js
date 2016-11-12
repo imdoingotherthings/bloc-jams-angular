@@ -2,7 +2,7 @@
 		function config($stateProvider, $locationProvider) {
 			$locationProvider
 				.html5Mode({
-					enable: true,
+					enabled: true,
 					requireBase: false
 			});
 			
@@ -15,6 +15,7 @@
 			
 				.state('album', {
 					url: '/album',
+					controller: 'AlbumCtrl as album'
 					templateUrl: '/templates/album.html'
 			})
 			
@@ -26,5 +27,5 @@
 		}
 	angular
 		.module('blocJams', ['ui.router'])
-		.config(config);
+		.config(config)
 })();
