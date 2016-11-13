@@ -4,6 +4,6 @@
 	}
 	
 	angular 
-		.module('blocJams'),
+		.module('blocJams')
 		.controller('AlbumCtrl', ['Fixtures', AlbumCtrl]);
 })();
