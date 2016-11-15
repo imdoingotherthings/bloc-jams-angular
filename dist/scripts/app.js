@@ -1,5 +1,4 @@
 (function() {
-<<<<<<< HEAD
 		function config($stateProvider, $locationProvider) {
 			$locationProvider
 				.html5Mode({
@@ -26,7 +25,6 @@
 					templateUrl: '/templates/collection.html'
 			});
 		}
-=======
 	function config($stateProvider, $locationProvider){
 		$locationProvider.html5Mode({
       enabled: true, //hides #! from url (hashbang indicates that the page load is triggered by JS)
@@ -51,7 +49,6 @@
     });
 	}
 
->>>>>>> 42801c40b32f43f64922a9f4b0f0658ad6ca3498
 	angular
 		.module('blocJams', ['ui.router'])
 		.config(config)
