@@ -2,7 +2,6 @@
 	function SongPlayer (Fixtures) {
 		var SongPlayer = {};
 		var currentAlbum = Fixtures.getAlbum();
-		var currentSong = null;
 		
 		/** 
 		* @desc Buzz object audio file
@@ -18,8 +17,6 @@
 			currentBuzzObject.play();
 			currentSong.playing = true;
 		};
-		
-		console.log(playSong);
 		
 		/**
 		* @function stopSong
@@ -37,9 +34,9 @@
 		* @param {object} song
 		*/
 		var setSong = function (song) {
-			console.log(song);
 			if (currentBuzzObject) {
-				stopSong();
+				currentBuzzObject.stop();
+				SongPlayer.currentSong.playing = null;
 			}
 			
 			currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -47,7 +44,7 @@
 				preload: true
 			});
 			
-			currentSong = song;
+			SongPlayer.currentSong = song;
 		};
 		
 		/** 
@@ -55,11 +52,10 @@
 		* @desc Grabing the index of the songs using currentAlbum which stores getAlbum() from the Fixtures.js file
 		*/
 		var getSongIndex = function () {
-			return currentAlbum.songs.indexOf(songs);
+			return currentAlbum.songs.indexOf(song);
 		};
 		
-		SongPlayer.currentSong;
-		console.log(SongPlayer.currentSong);
+		SongPlayer.currentSong = null;
 		
 		/** 
 		* @desc Setting the main function SongPlayer to the play state. We then check if the current song is playing or not
@@ -69,10 +65,11 @@
 			song = song || SongPlayer.currentSong;
 			if (SongPlayer.currentSong !== song) {
 				setSong(song);
-				playSong();
+				playSong(song);
 			} else if (SongPlayer.currentSong === song) {
 					if (currentBuzzObject.isPaused()) {
-						currentBuzzObject.play();
+						console.log(isPaused());
+						playSong(song);
 					}
 				}
 			};
@@ -95,9 +92,9 @@
 			currentSongIndex--;
 			
 			if (currentSongIndex < 0) {
-				stopSong();
+				stopSong(SongPlayer.currentSong);
 			} else {
-				var song = currentAlbum.songs[currentSongIndex];
+				var song = currentAlbum.song[currentSongIndex];
 				setSong(song);
 				playSong(song);
 			}
@@ -109,6 +106,16 @@
 		SongPlayer.next = function () {
 			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
 			currentSongIndex++;
+			
+			var lastSongIndex = currentAlbum.songs.length - 1;
+			
+			if (currentSongIndex > lastSongIndex) {
+				stopSong(SongPlayer.currentSong);
+			} else {
+				var song = currentAlbum.songs[currentSongIndex];
+				setSong(song);
+				playSong(song);
+			}
 		};
 		
 		
