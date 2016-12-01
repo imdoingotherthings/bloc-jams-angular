@@ -1,7 +1,7 @@
 (function () {
 	function PlayerBarCtrl (Fixtures, SongPlayer) {
-		this.albumData = Fixtures.getAlbum();
 		this.songPlayer = SongPlayer;
+//		console.log(SongPlayer.currentSong);
 	}
 	
 	angular

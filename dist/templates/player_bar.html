@@ -19,24 +19,16 @@
 			</a>
 		</div>
 		<div class="control-group currently-playing">
-			<h2 class="song-name">{{ album.song }}</h2>
+			<h2 class="song-name">{{ album.title }}</h2>
 			<h2 class="artist-song-mobile"></h2>
-			<h3 clas="artist-name">{{ album.artist }}</h3>
+			<h3 clas="artist-name">{{ playerBar.songPlayer.currentSong.title }}</h3>
 			<div class="seek-control">
-				<div class="seek-bar">
-					<div class="fill"></div>
-					<div class="thumb"></div>
-				</div>
 				<div class="current-time"></div>
-				<div class="total-time">{{ song.length}}</div>
+				<div class="total-time">{{ album.albumData.duration}}</div>
 			</div>
 		</div>
 		<div class="control-group volume">
 			<span class="icon ion-volume-high"></span>
-			<div class="seek-bar">
-				<div class="fill"></div>
-				<div class="thumb"></div>
-			</div>
 		</div>
 	</div>
 </section>

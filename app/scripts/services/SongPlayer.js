@@ -2,6 +2,7 @@
 	function SongPlayer (Fixtures) {
 		var SongPlayer = {};
 		var currentAlbum = Fixtures.getAlbum();
+		var currentSong = null;
 		
 		/** 
 		* @desc Buzz object audio file
@@ -13,10 +14,12 @@
 		* @function playSong
 		* @desc Plays the current selected song 
 		*/
-		var playSong = function (song) {
+		var playSong = function (currentSong) {
 			currentBuzzObject.play();
 			currentSong.playing = true;
 		};
+		
+		console.log(playSong);
 		
 		/**
 		* @function stopSong
@@ -34,6 +37,7 @@
 		* @param {object} song
 		*/
 		var setSong = function (song) {
+			console.log(song);
 			if (currentBuzzObject) {
 				stopSong();
 			}
@@ -54,7 +58,8 @@
 			return currentAlbum.songs.indexOf(songs);
 		};
 		
-		SongPlayer.currentSong = null;
+		SongPlayer.currentSong;
+		console.log(SongPlayer.currentSong);
 		
 		/** 
 		* @desc Setting the main function SongPlayer to the play state. We then check if the current song is playing or not
@@ -78,7 +83,7 @@
 		*/
 		SongPlayer.pause = function (song) {
 			song = song || SongPlayer.currentSong;
-			currentBuzObject.pause();
+			currentBuzzObject.pause();
 			song.playing = false;
 		};
 		

@@ -2,6 +2,7 @@
 	function Fixtures() {
 		var Fixtures = {};
 		
+		var anotherAlbum = {}
 		var albumPicasso = {
     title: 'The Colors',
     artist: 'Pablo Picasso',
@@ -36,12 +37,14 @@
 			return albumPicasso;
 		};
 		
-		Fixtures.getCollection = function (numberOfAlbums) {
-			var albumArray = [];
-			for (var count = 0; count < numberOfAlbums; count++) {
-				albumArray.push(count[numberOfAlbums]);
-			}
-			return albumArray;
+		Fixtures.getCollection = function () {
+				return [albumPicasso, albumMarconi];
+
+//			var albumArray = [];
+//			for (var count = 0; count < numberOfAlbums; count++) {
+//				albumArray.push(count[numberOfAlbums]);
+//			}
+//			return thisalbums;
 		};
 		
 		return Fixtures;
