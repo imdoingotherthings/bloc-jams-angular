@@ -51,7 +51,7 @@
 		* @function getSongIndex 
 		* @desc Grabing the index of the songs using currentAlbum which stores getAlbum() from the Fixtures.js file
 		*/
-		var getSongIndex = function () {
+		var getSongIndex = function (song) {
 			return currentAlbum.songs.indexOf(song);
 		};
 		
@@ -68,7 +68,6 @@
 				playSong(song);
 			} else if (SongPlayer.currentSong === song) {
 					if (currentBuzzObject.isPaused()) {
-						console.log(isPaused());
 						playSong(song);
 					}
 				}
@@ -94,7 +93,7 @@
 			if (currentSongIndex < 0) {
 				stopSong(SongPlayer.currentSong);
 			} else {
-				var song = currentAlbum.song[currentSongIndex];
+				var song = currentAlbum.songs[currentSongIndex];
 				setSong(song);
 				playSong(song);
 			}
