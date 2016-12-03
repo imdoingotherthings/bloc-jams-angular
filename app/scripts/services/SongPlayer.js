@@ -15,7 +15,7 @@
 		*/
 		var playSong = function (currentSong) {
 			currentBuzzObject.play();
-			currentSong.playing = true;
+			SongPlayer.currentSong.playing = true;
 		};
 		
 		/**
@@ -23,9 +23,9 @@
 		* @desc Stopping the current playing song
 		* param {Object} song
 		*/
-		var stopSong = function (song) {
+		var stopSong = function (currentSong) {
 			currentBuzzObject.stop();
-			currentSong.playing = null;
+			SongPlayer.currentSong.playing = null;
 		};
 		
 		/** 
@@ -55,7 +55,8 @@
 			return currentAlbum.songs.indexOf(song);
 		};
 		
-		SongPlayer.currentSong = null;
+		SongPlayer.currentSong;
+		console.log(SongPlayer.currentSong = currentBuzzObject);
 		
 		/** 
 		* @desc Setting the main function SongPlayer to the play state. We then check if the current song is playing or not
@@ -67,9 +68,8 @@
 				setSong(song);
 				playSong(song);
 			} else if (SongPlayer.currentSong === song) {
-					if (currentBuzzObject.isPaused()) {
-						console.log(isPaused());
-						playSong(song);
+					if (currentBuzzObject.isPaused(song)) {
+						currentBuzzObject.play();
 					}
 				}
 			};
@@ -92,7 +92,8 @@
 			currentSongIndex--;
 			
 			if (currentSongIndex < 0) {
-				stopSong(SongPlayer.currentSong);
+				currentBuzzObject.stop();
+				SongPlayer.currentSong.playing = null;
 			} else {
 				var song = currentAlbum.song[currentSongIndex];
 				setSong(song);

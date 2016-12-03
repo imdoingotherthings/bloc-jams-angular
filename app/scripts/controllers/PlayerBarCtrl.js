@@ -1,7 +1,7 @@
 (function () {
 	function PlayerBarCtrl (Fixtures, SongPlayer) {
 		this.songPlayer = SongPlayer;
-//		console.log(SongPlayer.currentSong);
+		console.log(this.songPlayer);
 	}
 	
 	angular
