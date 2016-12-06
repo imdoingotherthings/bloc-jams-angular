@@ -1,4 +1,4 @@
-<section class="player-bar" ng-controller="PlayerBarCtrl as playerBar"  ng-include="'seek_bar.html'">
+<section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
 	<div class="container">
 		<div class="control-group main-controls">
 			<a class="previous" ng-click="playerBar.songPlayer.previous()">
@@ -29,7 +29,6 @@
 		</div>
 		<div class="control-group volume">
 			<span class="icon ion-volume-high"></span>
-			<seek-bar></seek-bar>
 		</div>
 	</div>
 </section>
