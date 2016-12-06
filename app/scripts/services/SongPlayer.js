@@ -13,7 +13,7 @@
 		* @function playSong
 		* @desc Plays the current selected song 
 		*/
-		var playSong = function (currentSong) {
+		var playSong = function (song) {
 			currentBuzzObject.play();
 			SongPlayer.currentSong.playing = true;
 		};
@@ -23,7 +23,7 @@
 		* @desc Stopping the current playing song
 		* param {Object} song
 		*/
-		var stopSong = function (currentSong) {
+		var stopSong = function (song) {
 			currentBuzzObject.stop();
 			SongPlayer.currentSong.playing = null;
 		};
@@ -55,7 +55,7 @@
 			return currentAlbum.songs.indexOf(song);
 		};
 		
-		SongPlayer.currentSong;
+		SongPlayer.currentSong = null;
 		console.log(SongPlayer.currentSong = currentBuzzObject);
 		
 		/** 
@@ -68,8 +68,6 @@
 				setSong(song);
 				playSong(song);
 			} else if (SongPlayer.currentSong === song) {
-					if (currentBuzzObject.isPaused(song)) {
-						currentBuzzObject.play();
 					if (currentBuzzObject.isPaused()) {
 						playSong(song);
 					}
