@@ -23,11 +23,13 @@
 			<h2 class="artist-song-mobile"></h2>
 			<h3 clas="artist-name">{{ playerBar.albumData.artist }}</h3>
 			<div class="seek-control">
-				<div class="current-time"></div>
+				<ng-include src="'/templates/seek_bar.html'" value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.length }}" on-change="playerBar.songPlayer.setCurrentTime(value)"></ng-include>
+				<div class="current-time" value="{{ playerBar.songPlayer.currentTime }}"></div>
 				<div class="total-time">{{ playerBar.songPlayer.currentSong.duration }}</div>
 			</div>
 		</div>
 		<div class="control-group volume">
+			<ng-include src="'/templates/seek_bar.html'" value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.duration }}" on-change="playerBar.songPlayer.setCurrentTime(value)"></ng-include>
 			<span class="icon ion-volume-high"></span>
 		</div>
 	</div>

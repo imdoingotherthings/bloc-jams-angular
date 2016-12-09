@@ -1,5 +1,5 @@
 (function () {
-	function SongPlayer (Fixtures) {
+	function SongPlayer ($rootScope, Fixtures) {
 		var SongPlayer = {};
 		var currentAlbum = Fixtures.getAlbum();
 		
@@ -44,6 +44,12 @@
 				preload: true
 			});
 			
+			currentBuzzObject.bind('timeupdate', function () {
+				$rootScope.$apply(function () {
+					SongPlayer.currentTime = currentBuzzObject.getTime();
+				});
+			});
+			
 			SongPlayer.currentSong = song;
 		};
 		
@@ -56,7 +62,14 @@
 		};
 		
 		SongPlayer.currentSong = null;
-		console.log(SongPlayer.currentSong = currentBuzzObject);
+		
+		/** 
+		* @desc Current playback time (in seconds) of currently playing song
+		* type {Number}
+		*/
+		SongPlayer.currentTime = null;
+		
+		SongPlayer.volume = 80;
 		
 		/** 
 		* @desc Setting the main function SongPlayer to the play state. We then check if the current song is playing or not
@@ -92,8 +105,7 @@
 			currentSongIndex--;
 			
 			if (currentSongIndex < 0) {
-				currentBuzzObject.stop();
-				SongPlayer.currentSong.playing = null;
+				stopSong(SongPlayer.currentSong);
 			} else {
 				var song = currentAlbum.songs[currentSongIndex];
 				setSong(song);
@@ -119,12 +131,32 @@
 			}
 		};
 		
+		/**
+		* @function setCurrentTime 
+		* @desc Set current time (in seconds) of currently playing song
+		* @param {Number} time
+		*/
+		SongPlayer.setCurrentTime = function () {
+			if (currentBuzzObject) {
+				currentBuzzObject.setTime(time);
+			}
+		};
 		
+		/** 
+		* @function volume 
+		* @desc creates our volume control 
+		*/
+		SongPlayer.setVolume = function (volume) {
+			if (currentBuzzObject) {
+				currentBuzzObject.setVolume(volume);
+			}
+			SongPlayer.volume = volume;
+		};
 		
 		return SongPlayer;
 	};
 
 	angular
 		.module('blocJams')
-		.factory('SongPlayer', SongPlayer);
+		.factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 })();
