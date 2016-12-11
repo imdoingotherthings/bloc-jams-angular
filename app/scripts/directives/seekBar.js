@@ -7,10 +7,10 @@
 			offsetXPercent = Math.max (0, offsetXPercent);
 			offsetXPercent = Math.min (1, offsetXPercent);
 			return offsetXPercent;
-		}
+		};
 		
 		return {
-			template: '/templates/directives/seek_bar.html',
+			templateUrl: '/templates/directives/seek_bar.html',
 			replace: true,
 			restrict: 'E',
 			scope: {
@@ -52,7 +52,7 @@
 				};
 				
 				scope.trackThumb = function () {
-					$document.bind('mouseover.thumb', function (event) {
+					$document.bind('mousemove.thumb', function (event) {
 						var percent = calculatePercent (seekBar, event);
 						scope.$apply (function () {
 							scope.value = percent * scope.max;
