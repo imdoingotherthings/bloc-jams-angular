@@ -23,6 +23,6 @@
 	};
 	
 	angular
-		.module('blocjams')
+		.module('blocJams')
 		.filter('timecode', timecode);
 })();

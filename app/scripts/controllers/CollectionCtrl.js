@@ -2,7 +2,7 @@
 	function CollectionCtrl	(Fixtures) {
 //		console.log(Fixtures.getCollection());
 //		var numberOfAlbums = 4;
-		this.albums = Fixtures.getCollection(albums);
+		this.albums = Fixtures.getCollection(2);
 //		this.albums = Fixtures.getCollection(Fixture.albums.length);
 	}
 

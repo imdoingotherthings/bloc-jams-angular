@@ -10,7 +10,7 @@
 		};
 		
 		return {
-			templateUrl: '/templates/directives/seek_bar.html',
+			templateUrl: '/templates/seek_bar.html',
 			replace: true,
 			restrict: 'E',
 			scope: {
@@ -37,6 +37,12 @@
 					return percent + "%";
 				};
 				
+				var notifyOnChange = function (newValue) {
+					if (typeof scope.onChange === 'function') {
+						scope.onChange({value: newValue});
+					}
+				};
+
 				scope.fillStyle = function () {
 					return {width: percentString()};
 				};
@@ -66,11 +72,6 @@
 					});
 				};
 					
-				var notifyOnChange = function (newValue) {
-					if (typeof scope.onChange === 'function') {
-						scope.onChange({value: newValue});
-					}
-				};
 			}
 		};
 	};
